@@ -41,12 +41,12 @@ Loaded via Google Fonts `<link>` in `index.html` (no npm font package).
 - **Tagline**: `0.95 rem` (`Playfair Display`, uppercase, tracked)
 - **Intro text**: `1.25 rem` (`Playfair Display`, italic)
 - **Couple Names**: `4.20 rem` (`Alex Brush`, cursive, burgundy `#8f3350`)
-- **Relation ("Daughter of / Son of")**: `1.10 rem` (`Cormorant Garamond`, italic)
-- **Parents Names**: `0.90 rem` (`Cormorant Garamond`, weight 500)
 - **Connector `&`**: `2.40 rem` (`Playfair Display`, italic, gold `#b08968`)
 - **Revealed Date**: `1.85 rem` (`Playfair Display`, serif)
 - **Countdown Numbers**: `1.35 rem` (`Playfair Display`)
 - **Countdown Unit Labels**: `0.70 rem` (uppercase, tracked)
+
+*(Note: Parents' names and lineage are featured exclusively on the "Meet the Families" screen (`#couple`) rather than the standalone invitation card, maintaining an uncluttered, balanced hierarchy on both mobile and desktop.)*
 
 ## 3. Spacing Scale
 
@@ -63,9 +63,11 @@ A single scale used everywhere via CSS variables — no ad-hoc pixel values:
 ## 4. Layout Foundations
 
 - **Content max-width**: `1000px`, centered (`--max-width`)
-- **Full-Screen Coverage**: Every section (`.section`, `.shree-ganesh`, `.invitation`, `.footer`) occupies a full viewport screen (`min-height: 100vh; min-height: 100dvh; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; box-sizing: border-box;`).
-- **Smooth Free Scrolling**: Natural, fluid browser scrolling across all screen sizes without CSS scroll-snapping jitter or forced shifts, with section jumps handled cleanly via the floating SectionNav controls (`SectionNav.jsx`) and drawer nav (`Nav.jsx`).
-- **Section Spacing**: Balanced internal padding (`1.75rem 1rem`) and compact component margins ensure all headings, cards, and interactive widgets fit completely within the viewport height without unnecessary scrollbar spillover.
+- **Full-Screen Coverage & Viewport Height Stability**: Every section (`.section`, `.shree-ganesh`, `.invitation`, `.footer`, etc.) occupies a full viewport screen (`min-height: 100vh; min-height: 100lvh; display: flex; flex-direction: column; justify-content: center; align-items: center; box-sizing: border-box;`).
+  - Standardized strictly to `100vh` and `100lvh` (large viewport height). `100dvh` and `100svh` are deliberately excluded because dynamic mobile URL bar resizing (expanding/collapsing during scroll in iOS Safari and Android Chrome) caused disruptive layout shifts, canvas re-renders, and scroll repositioning.
+- **Mobile Scroll Anchoring Immunity**: `overflow-anchor: none !important;` is enforced globally in `src/index.css` on `html`, `body`, and all section containers, completely preventing browser scroll anchoring from jumping or resetting scroll position when asynchronous resources or canvases load.
+- **Smooth Free Scrolling**: Natural, fluid browser scrolling across all screen sizes with `scroll-snap-type: none !important;` (no CSS scroll-snapping jitter, rubber-banding, or forced page snapping), with smooth section jumping provided by the floating SectionNav controls (`SectionNav.jsx`) and drawer nav (`Nav.jsx`).
+- **Section Spacing**: Balanced internal padding (`1.75rem 1rem` on desktop, tailored clamp on mobile) and compact component margins ensure all headings, cards, and interactive widgets fit completely within the viewport height without unnecessary scrollbar spillover.
 - **Section Alternation**: Alternating sections (Event Details, Gallery, Blessings) use `.section--surface` — white background with a hairline top/bottom border — to contrast gracefully with the ivory page sections.
 - **Section Headings**: Centered eyebrow label above an `h2`, `1.25rem` margin below.
 
@@ -121,7 +123,7 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
 - **Devanagari Shlokas**:
   1. Ganesha shloka (*Vakratunda Mahakaya...*) with English translation.
   2. Ornamental gold diamond divider line (`.shree-ganesh__shlok-divider`).
-  3. Vishnu Mangalam verse (*Mangalam Bhagwan Vishnuh...*) with English translation.
+  3. Vishnu Mangalam verse (*Mangalam Bhagwan Vishnuh...* without trailing commas for clean Sanskrit metre) with English translation.
 - **Bouncing Gold Scroll-Down Button**: Centered circular button at the bottom that smoothly scrolls directly to the Invitation screen (`#invitation`).
 
 ### Invitation (`#invitation`)
@@ -132,6 +134,7 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
   - Bride block: **Mahek** (`4.2rem` Alex Brush cursive in royal burgundy).
   - Center connector: **`&`** (`2.4rem` Playfair Display italic in gold accent `#b08968`).
   - Groom block: **Yashoratna** (`4.2rem` Alex Brush cursive in royal burgundy).
+  *(Parents' names and lineage are featured exclusively in "Meet the Families" (`#couple`), keeping this invitation view clean, elegant, and balanced).*
 - **Divider**: Thin gold lines with centered diamond marker.
 - **Scratch-to-Reveal Card**: Covers the wedding date and live countdown.
 
@@ -139,8 +142,10 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
 - **Unrevealed Canvas View**:
   - Deep crimson paper-grain texture with fine diagonal fibers and speckles.
   - Delicate gold inner border frame.
-  - **Couple's Initials Monogram Logo** (`public/images/monogram/monogramCircularWithoutBg.png`) rendered in the center (`78px` × `78px`).
+  - **Couple's Initials Monogram Logo** (`public/images/monogram/monogramCircularWithoutBg.png`) rendered in the center (`78px` × `78px` desktop, `68px` × `68px` mobile).
   - **"SAVE THE DATE"** title (`17px`, `Playfair Display` 600 with `0.14em` letter-spacing) and **"Scratch to reveal"** subtitle (`17px`, `Cormorant Garamond` italic 400) below the logo.
+  - **Glass Shine Animation**: A continuous, elegant linear-gradient light sheen sweeps smoothly across the "SAVE THE DATE" lettering and card face every 5.2s cycle (2.6s sweep eased via `easeInOutCubic` followed by a 2.6s rest pause). Pure reflective glass shimmer with star glints removed.
+  - **Mobile Dimension Guarding**: Canvas drawing dimensions are cached (`lastSizeRef`) to prevent redundant canvas resizing and redraw flickering during mobile address bar transitions.
   - **Scratch Physics**: Scratching clears both the paper texture and monogram logo with organic debris particle flakes falling away.
 - **Revealed Card View**:
   - Framed with an elegant **burgundy border** (`1.5px solid var(--color-burgundy)`), `0.75rem` rounded corners, glassmorphic ivory background (`rgba(255, 255, 255, 0.95)`), and soft burgundy elevation shadow.
@@ -150,8 +155,8 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
 
 ### Meet the Couple / Family Section (`#couple`, `MeetFamilies.jsx` / `MeetCouple.jsx`)
 - **Sacred Family Shloka & Quote Header**:
-  - Sanskrit Shloka (`॥ त्वमेव माता च पिता त्वमेव, त्वमेव बन्धुश्च सखा त्वमेव ॥`) rendered in `var(--color-burgundy)` in `Tiro Devanagari Sanskrit`.
-  - Editorial translation quote below in `Cormorant Garamond` italic.
+  - Sanskrit Shloka (`॥ ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं । भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात् ॥`) rendered in `var(--color-burgundy)` in `Tiro Devanagari Sanskrit`.
+  - Editorial translation quote below in `Cormorant Garamond` italic (*"We meditate on the transcendent glory of the Divine Sun, creator of all realms — may that divine brilliance inspire and illuminate our path."*).
 - **Two Side-by-Side Royal Indian Family Cards**:
   - Left: Bride's Family Card (The Gupta Family in royal burgundy `var(--color-burgundy)`, location `Moradabad · The City of Brass`, invite phrases, parents in burgundy bold, bride name in Alex Brush cursive, relation tagline in muted text).
   - Right: Groom's Family Card (The Gupta Family in royal burgundy `var(--color-burgundy)`, location `Moradabad · The City of Brass`, invite phrases, parents in burgundy bold, groom name in Alex Brush cursive, relation tagline in muted text).
@@ -185,8 +190,12 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
   - Row 2: **Godh Bharai &amp; Sagai** (Dec 5, 7:00 PM) &amp; **Baraat &amp; Ghurchari** (Dec 6, 10:30 AM)
   - Row 3: **Jaimaal** (Dec 6, 12:30 PM) &amp; **Phere** (Dec 6, 5:00 PM)
 - **Card Front**: Centered event title (`Playfair Display`, Burgundy `#8f3350`), subtle gold divider line, event date (uppercase, muted), and event time (`Playfair Display`, Gold `#b08968`), with a "Tap for details" hint icon.
-- **Card Back**: Tapping/clicking smoothly flips the card 180° (`rotateY(180deg)`) to reveal a one-liner event description, plus metadata rows for **Attire**, **Venue**, and **Note**. An animated burgundy boundary timer stroke (`.event-flip-card__border-timer`, `#8f3350`) traces around the perimeter of the card showing the countdown until it flips back (default 20 seconds, or immediately on tap).
-- **Mobile (≤680px)**: Retains the 2-column, 3-row layout with compact sizing, typography, and margins so all 6 cards fit cleanly on mobile screens.
+- **Card Back**: Tapping/clicking smoothly flips the card 180° (`rotateY(180deg)`) to reveal:
+  - Header with **Short Date** (`Dec 5` or `Dec 6`) on the first line, and start time on the next line (e.g. `12:30 PM`, with the word "onwards" removed for clarity and precision).
+  - One-liner event description.
+  - Metadata row for **Attire** (e.g. *Shades of Pink*, *Glam and Glitter*, *Traditional Festive and Elegance*).
+  - Animated burgundy boundary timer stroke (`.event-flip-card__border-timer`, `#8f3350`) tracing around the perimeter of the card showing the countdown until it flips back (default 20 seconds, or immediately on tap).
+- **Mobile (≤680px)**: Retains the 2-column, 3-row layout with compact sizing, typography, and margins so all 6 cards fit cleanly on mobile screens without overflowing.
 - **"How to reach the venue?" Button**: Sits centered below the event cards (`.event-details__venue-btn`, burgundy pill with map-pin icon).
 - **Venue & Travel Popup Modal (`VenueModal.jsx`)**:
   - Opens on clicking "How to reach the venue?".
@@ -198,7 +207,7 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
     - **Travel Options Guide**: Detailed instructions for **By Road / Cab**, **By Train** (Ramnagar Railway Station), and **By Air** (Pantnagar / Delhi airports).
 
 ### Gallery
-- White/surface section (`#gallery`), vertically distributed with the section heading anchored at the top, the photo stage in the vertical middle, and controls directly underneath.
+- White/surface section (`#gallery`), occupying its own whole view (`min-height: 100vh; min-height: 100lvh;`), cleanly isolating the Gallery from the Blessings Wall (`#blessings`). Vertically distributed with the section heading anchored at the top, the photo stage in the vertical middle, and controls directly underneath.
 - **3D Coverflow Perspective**: Centered active photo sits prominent, while neighbors fan out with calculated `rotateY`, `translateZ`, and `scale`. Distance-to-center wraps the "short way around" so cycling past the last photo turns in whichever direction is closer.
 - **Burgundy Frame & Theme Matting**: Each card features a clean **2px solid Burgundy border (`var(--color-burgundy)`)** with a warm ivory/cream background fill (`#ffffff` to `#faf7f2`), perfectly matching the website aesthetic without black borders.
 - **Adaptive Image Scaling**: Large DSLR / 4K phone photos in portrait, landscape, or square orientation are scaled down with `object-fit: contain; max-width: 96%; max-height: 96%;` without clipping faces or distortion.
@@ -215,7 +224,7 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
   - Live upload progress bar with animated gold striping, progress counter (`Uploading photo 2 of 5 (40%)`), and file checkmarks (`✓`).
 
 ### Blessings
-- Ivory/surface section (`#blessings`).
+- Ivory/surface section (`#blessings`), occupying a full viewport view (`min-height: 100vh; min-height: 100lvh;`).
 - **Compact 3-Tab Filter Bar**: "Bride's Side", "All Wishes", and "Groom's Side" filter pills with active burgundy indicator and streamlined 15px icons.
 - **Curated 2x3 Grid (6 Cards)**: Displays 6 curated wish cards in a clean 2-column, 3-row layout (`--grid-gap: 0.5rem` desktop / `0.45rem` mobile).
 - **Strict 3-Line Message Display**: Guaranteed 3-line max height cap with `...` (ellipsis) truncation and 2-line author name wrapping.
@@ -226,7 +235,9 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
 - **Dedicated Blessings Wall Page** (`#/blessings-wall`): Reached via the "View All Blessings" link, displaying the complete chronological blessings wall.
 
 ### Blessings and RSVP
-- White/surface section (`#blessings-rsvp`). Top-aligned layout (`padding-top: var(--space-4)`) anchoring the section heading and tab switcher firmly at the top of the viewport.
+- White/surface section (`#blessings-rsvp`), occupying a dedicated whole view (`min-height: 100vh; min-height: 100lvh; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; box-sizing: border-box;`).
+- **Top-Anchored Heading**: Section heading and subtitle remain firmly anchored at the top of the viewport.
+- **Vertically Centered Form Card**: The interactive form card (`.blessings-rsvp-card`) uses `margin: auto auto;` to automatically center itself in the remaining viewport space, ensuring a perfectly centered, balanced presentation on all mobile devices and desktop monitors rather than sinking to the bottom.
 - A custom-built form with 2 tabs — "Send Blessings" and "RSVP" — connected directly to Firebase Firestore for 0-latency live updates and Google Sheets ('Wedding Admin System').
 - Both tabs include Bride Side / Groom Side selection.
 - RSVP fields: Name, Side, Attending (Joyfully accept / Regretfully decline), Guests count, and "Parking required?" (Yes/No).
@@ -250,10 +261,10 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
 
 - Mobile-first breakpoints, primarily at `480px`, `600px`, and `700px` — since most guests are expected to open this on a phone, mobile is treated as the primary layout, not an afterthought
 - Nav collapses to a hamburger menu ≤700px (see Nav section above)
-- Event Details maintains a centered 2-column, 3-row flip card grid (with the 5th card centered on the 3rd row) across mobile, tablet, and desktop (see Event Details section above)
+- Event Details maintains a centered 2-column, 3-row flip card grid (all 6 event ceremonies) across mobile, tablet, and desktop (see Event Details section above)
 - Gallery's coverflow shrinks its stage height/perspective and widens covers slightly on narrow screens, but keeps the same fan-out mechanic (no reflow to a stacked column) at any width
-- **Meet the Couple is the one exception to "stack on mobile"** — it deliberately keeps bride/groom side-by-side at every width, shrinking sizes instead of stacking (see Meet the Couple section above)
-- Blessings switches from the circular floating cloud to a plain grid ≤700px (see Blessings section above)
+- Meet the Couple displays two side-by-side family cards on desktop and tablet, and gracefully stacks them into a single column with an elegant horizontal divider and centered ॐ symbol on mobile screens (≤680px)
+- Blessings displays 6 curated wish cards in a clean 2-column, 3-row layout across all screen sizes, with a full-text modal on tap and a link to the dedicated Blessings Wall page
 - The floating bottom-right controls (section arrows + music button) shift slightly closer to the corner (`--space-1` instead of `--space-2`) on screens ≤480px
 - All interactive elements maintain a 44px minimum touch target
 

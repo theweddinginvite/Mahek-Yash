@@ -32,11 +32,14 @@ A short line shown above your names in the Invitation:
 
 ## 4. Family Section / Meet the Couple
 
-- **Header Sanskrit Shloka**: `[ ॥ त्वमेव माता च पिता त्वमेव, त्वमेव बन्धुश्च सखा त्वमेव ॥ ]`
-- **Header Translation Quote**: `[ "You alone are mother and father, You alone are kin and friend — and so we begin, with gratitude to all who have shaped us." ]`
+*(Lineage, parentage, and blessings are showcased in this dedicated section to keep the page 2 Invitation screen focused and elegant).*
+
+- **Header Sanskrit Shloka**: `[ ॥ ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं । भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात् ॥ ]`
+- **Header Translation Quote**: `[ "We meditate on the transcendent glory of the Divine Sun, creator of all realms — may that divine brilliance inspire and illuminate our path." ]`
 
 **Bride's Family Card**
-- Auspicious Symbol: `[ ॥ श्री ॥ ]`
+- Auspicious Symbol: `[ ॥ मंगलम् ॥ ]`
+- Symbol Translation: `[ Auspicious Beginning ]`
 - Family Title: `[ THE GUPTA FAMILY ]`
 - City / Origin: `[ Moradabad · The City of Brass ]`
 - Grandparents: `[ Late Shri Prem Shankar Gupta ]` & `[ Late Smt. Sarla Devi Gupta ]`
@@ -47,10 +50,11 @@ A short line shown above your names in the Invitation:
 - Relation: `[ Their beloved daughter ]`
 
 **Groom's Family Card**
-- Auspicious Symbol: `[ ॥ श्री ॥ ]`
+- Auspicious Symbol: `[ ॥ युग्म ॥ ]`
+- Symbol Translation: `[ Sacred Union ]`
 - Family Title: `[ THE GUPTA FAMILY ]`
 - City / Origin: `[ Moradabad · The City of Brass ]`
-- Grandparents: `[ Late Shri Niwas Gupta ]` & `[ Late Smt. Rama Gupta ]`
+- Grandparents: `[ Late Shri Shri Niwas Gupta ]` & `[ Late Smt. Rama Gupta ]`
 - Invitation Line 1: `[ with their family and loved ones ]`
 - Parents: `[ Smt. Renu Gupta ]` & `[ Shri Sandeep Kumar Gupta ]`
 - Invitation Line 2: `[ request the pleasure of your company on the auspicious wedding of ]`
@@ -59,7 +63,7 @@ A short line shown above your names in the Invitation:
 
 ## 5. Event Details (3D Flip Cards)
 
-Event details are presented as interactive 3D flip cards in a clean 2-column, 3-row grid (total 6 events). Front shows the event name, date, and time. Tapping/clicking the card flips it to reveal the event's one-liner description, attire, venue, and extra notes.
+Event details are presented as interactive 3D flip cards in a clean 2-column, 3-row grid (total 6 events). Front shows the event name, date, and time. Tapping/clicking the card flips it to reveal the short date (`Dec 5` or `Dec 6`) and start time on the next line (with the word "onwards" removed for clarity), followed by the event's one-liner description, attire, venue, and extra notes.
 
 - Card auto-flip back timer (in seconds, default 20): `[ 20 ]`
 

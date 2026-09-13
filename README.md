@@ -8,21 +8,24 @@ A high-performance, single-page luxury Indian wedding invitation built with Reac
 
 - **Interactive 3D Envelope Intro**: Realistic 3D flap rotation, card emergence, wax seal flip, and smooth fly-in animation to the invitation.
 - **Sacred Invocation (`#shree-ganesh`)**: Lord Ganesha crest with ambient golden rose glow and sacred Devanagari Sanskrit shlokas (*Vakratunda Mahakaya...* across 2 rhythmic lines & *Mangalam Bhagwan Vishnuh...*).
-- **Wedding Invitation (`#invitation`)**: Dedicated invitation screen with bride & groom names in royal burgundy cursive calligraphy, elegant gold ampersand connector, and monogrammed scratch-to-reveal card with live countdown, confetti celebration, and synchronized global date reveal.
+- **Wedding Invitation (`#invitation`)**: Dedicated invitation screen with bride & groom names in royal burgundy cursive calligraphy, elegant gold ampersand connector, and monogrammed scratch-to-reveal card with animated glass shine sweep across "SAVE THE DATE", live countdown, confetti celebration, and synchronized global date reveal.
 - **Navigation Drawer**: Distraction-free viewport with glassmorphic top-left floating menu, tailored 240px width, two-line stacked couple header (*Mahek &* / *Yashoratna*), and smooth section jumping.
-- **Meet the Families (`#couple`)**: Traditional royal Indian wedding lineage cards with classical Sanskrit shloka (*Twameva Mata Cha Pita Twameva...*), `THE GUPTA FAMILY` titles in royal burgundy, `॥ मंगलम् ॥` (*Auspicious Beginning*) & `॥ युग्म ॥` (*Sacred Union*) symbols rendered in two-layer ghost-matched HTML typography with the couple's Hindi initials strictly on consonants (**म** & **य**) highlighted in royal burgundy, diacritics and framing elements in ceremonial gold, unified Cormorant Garamond italic typography across all contextual and relationship lines in muted gray, and luxury double borders with burgundy inner dashed accents.
-- **Event Details (`#details`)**: 2-column, 3-row 3D flip cards (total 6 events) with 20s animated burgundy perimeter timer strokes, plus an interactive "How to reach the venue?" popup with QR code, GPS directions, and transit guides.
+- **Meet the Families (`#couple`)**: Traditional royal Indian wedding lineage cards with sacred Gayatri Mantra Sanskrit shloka (*॥ ॐ भूर्भुवः स्वः...*), `THE GUPTA FAMILY` titles in royal burgundy, `॥ मंगलम् ॥` (*Auspicious Beginning*) & `॥ युग्म ॥` (*Sacred Union*) symbols rendered in two-layer ghost-matched HTML typography with the couple's Hindi initials strictly on consonants (**म** & **य**) highlighted in royal burgundy, diacritics and framing elements in ceremonial gold, unified Cormorant Garamond italic typography across all contextual and relationship lines in muted gray, and luxury double borders with burgundy inner dashed accents.
+- **Event Details (`#details`)**: 2-column, 3-row 3D flip cards (total 6 events) with short date (`Dec 5` / `Dec 6`) and start time on back faces (without 'onwards'), 20s animated burgundy perimeter timer strokes, plus an interactive "How to reach the venue?" popup with QR code, GPS directions, and transit guides.
 - **Dynamic Memories Gallery (`#gallery`)**:
+  - **Dedicated Whole-View Isolation**: Occupies its own whole view (`min-height: 100vh; min-height: 100lvh;`), cleanly separated from the Blessings Wall.
   - **Live Google Drive Integration**: Upload photos directly to a Google Drive folder to update the gallery in real-time.
   - **Zero-Error Caricature Fallback**: Automatically renders Indian wedding caricature artwork if any photo fails to load.
   - **Adaptive Matting**: Scales down 4K/DSLR portraits, landscapes, and square photos without cropping faces.
   - **3D Coverflow & Lightbox**: Perspective coverflow carousel with clean distraction-free high-res lightbox view.
 - **Live Blessings Wall & RSVP (`#blessings`, `#blessings-rsvp`)**:
+  - **Dedicated Whole-View Sections**: Both sections occupy full viewport heights. The Blessings & RSVP form card is vertically centered in the viewport with the header anchored at the top.
   - **Real-Time 0-Latency**: Powered by Firebase Firestore listeners with automatic Google Sheets bidirectional synchronization.
   - **Live Heart Reactions (❤️)**: Interactive heart reactions synchronized across all guests.
   - **Matching Royal Frame**: Harmonized luxury border design with burgundy inner dashed trim.
   - **Telegram Bot Notifications & Moderation**: Instant Telegram alerts for new blessings & RSVPs with native inline "🗑️ Delete from Live Wall" moderation buttons.
 - **FAQ & Footer (`#faq`)**: Curated 6-question accordion covering exact travel routes & distances, complimentary parking, dress codes, December weather breakdown, 12:00 PM check-in on Dec 5 & 10:00 AM check-out on Dec 7 with mandatory Aadhaar ID requirements, hospitality coordinators, 24/7 snacks availability, official wedding hashtags (`#MahekWedsYash` & `#YashKiMahek`), and interactive action buttons for venue navigation and gallery jumps.
+- **Mobile Viewport Stability & Smooth Free Scrolling**: Standardized on `min-height: 100vh; min-height: 100lvh;` with global `overflow-anchor: none !important;` and `scroll-snap-type: none !important;`, preventing mobile URL bar expansion/retraction from triggering scroll jumps, erratic repositioning, or rubber-banding across iOS Safari and Android Chrome.
 - **Floating Controls**: Ambient background music player, envelope re-opener, and section navigation arrows.
 
 ---
@@ -127,10 +130,10 @@ src/
   components/         ← Interactive section components:
     EnvelopeIntro.jsx       ← 3D envelope opening experience with wax seal
     ShreeGanesh.jsx         ← Sacred Ganesha invocation with golden rose glow & Sanskrit shlokas
-    Invitation.jsx          ← Dedicated invitation screen with parents lineage
-    ScratchReveal.jsx       ← Monogrammed scratch-to-reveal card with live countdown
-    MeetFamilies.jsx        ← Royal Indian family lineage cards with Sanskrit shloka
-    EventsGrid.jsx          ← 2-column, 3-row 3D flip cards with perimeter countdown timer
+    Invitation.jsx          ← Dedicated invitation screen with couple names & scratch-to-reveal card
+    ScratchReveal.jsx       ← Monogrammed scratch card with glass shine animation & live countdown
+    MeetFamilies.jsx        ← Royal Indian family lineage cards with Gayatri Mantra shloka
+    EventDetails.jsx        ← 2-column, 3-row 3D flip cards with perimeter countdown timer
     VenueModal.jsx          ← Venue travel directions popup with QR code & transit options
     Gallery.jsx             ← 3D coverflow carousel with adaptive matting & caricature fallback
     GalleryUploadModal.jsx  ← Guest photo/video upload modal with batch progress & ceremony picker
