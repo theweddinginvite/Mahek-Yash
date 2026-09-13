@@ -174,10 +174,7 @@ const content = {
         description:
           "• From Delhi: ~245 km (~4 hr 20 min) via Delhi – Moradabad – Tanda – Bajpur (or via Kashipur) – Ramnagar (Resort is ~6 km from Ramnagar town).\n" +
           "• From Moradabad: ~81 km (~1 hr 50 min) via Moradabad – Tanda – Bajpur – Ramnagar.\n" +
-          "• From Bareilly: ~138 km (~2 hr 50 min) via Bareilly – Rampur – Suar – Bajpur – Ramnagar.\n" +
-          "• From Badaun: ~204 km (~3 hr 50 min) via Badaun – Chandausi Bypass – Moradabad – Tanda – Bajpur – Ramnagar.\n" +
-          "• From Dehradun / Haridwar: ~252 km (~4 hr 50 min) via Haridwar – Jagannathpur – Ramnagar.\n" +
-          "• From Chandigarh: ~424 km (~7 hr 45 min) via Saharanpur – Bhagwanpur – Haridwar (NH734) – Ramnagar.",
+          "• From Badaun: ~204 km (~3 hr 50 min) via Badaun – Chandausi Bypass – Moradabad – Tanda – Bajpur – Ramnagar.",
       },
       {
         mode: "By Train",
