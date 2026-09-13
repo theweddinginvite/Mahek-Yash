@@ -140,8 +140,14 @@
 
 @media (max-width: 768px) {
   .faq-section {
-    min-height: auto;
+    min-height: 100vh;
+    min-height: 100lvh;
     padding-top: var(--space-2);
     padding-bottom: max(1.75rem, env(safe-area-inset-bottom));
+  }
+
+  .faq-section .section__inner {
+    height: 100%;
+    flex: 1;
   }
 }

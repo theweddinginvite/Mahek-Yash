@@ -288,11 +288,18 @@
 
 @media (max-width: 680px) {
   #gallery {
-    min-height: auto;
+    min-height: 100vh;
+    min-height: 100lvh;
     padding-top: var(--space-2);
     padding-bottom: max(1.75rem, env(safe-area-inset-bottom));
     padding-left: 0.75rem;
     padding-right: 0.75rem;
+    justify-content: space-between;
+  }
+
+  #gallery .section__inner {
+    height: 100%;
+    flex: 1;
     justify-content: space-between;
   }
 
