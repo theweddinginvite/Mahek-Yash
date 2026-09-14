@@ -7,6 +7,7 @@ import EventDetails from "./components/EventDetails";
 import Gallery from "./components/Gallery";
 import Blessings from "./components/Blessings";
 import BlessingsRSVP from "./components/BlessingsRSVP";
+import Compliments from "./components/Compliments";
 import FAQ from "./components/FAQ";
 import FloatingControls from "./components/FloatingControls";
 import EnvelopeIntro from "./components/EnvelopeIntro";
@@ -70,6 +71,7 @@ function App({ entries, status, myBlessingKey, addLocalBlessing }) {
       <Gallery />
       <Blessings entries={entries} status={status} myBlessingKey={myBlessingKey} />
       <BlessingsRSVP onBlessingSent={addLocalBlessing} />
+      <Compliments />
       <FAQ isDateRevealed={dateRevealed} />
       <FloatingControls onReopenEnvelope={handleReopenEnvelope} />
     </>

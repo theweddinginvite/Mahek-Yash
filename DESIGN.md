@@ -77,17 +77,18 @@ A single scale used everywhere via CSS variables — no ad-hoc pixel values:
 1. **Shree Ganesh** (`#shree-ganesh`) — full-height sacred invocation screen with Lord Ganesh crest & shlokas
 2. **Invitation** (`#invitation`) — standalone wedding invitation, lineage, and scratch card date reveal
 3. **Meet the Couple** (`#couple`)
-4. **Event Details** (`#details`) — 2x3 interactive flip cards grid + "How to reach the venue?" popup
+4. **Event Details** (`#details`) — 5 interactive flip cards grid + "How to reach the venue?" popup
 5. **Gallery** (`#gallery`) — 3D coverflow carousel
 6. **Blessings** (`#blessings`) — guest blessings display
 7. **Blessings and RSVP** (`#blessings-rsvp`) — interactive RSVP & blessing form
-8. **FAQ & Footer** (`#faq`) — frequently asked questions accordion with the footer signature (`Mahek & Yash` and wedding date) integrated at the bottom of the final page
+8. **Best Compliments** (`#compliments`) — royal luxury card with family compliments & awaiting eyes
+9. **FAQ & Footer** (`#faq`) — frequently asked questions accordion with the footer signature (`Mahek & Yash` and wedding date) integrated at the bottom of the final page
 
 Each section is a full-screen "frame" you can jump to directly — every section above has a stable `id`, used both by the Nav links and by the section frame-nav (below).
 
-### Section frame-nav (home / up / down arrows)
+### Section frame-nav (home / up / down arrows & keyboard navigation)
 
-The bottom-right floating control cluster (`FloatingControls.jsx`), top to bottom: an **Envelope button** (`HomeButton.jsx`) with an envelope icon — reopens the interactive 3D Envelope invitation intro; a pair of stacked up/down arrow buttons (`src/components/SectionNav.jsx`); then the music mute button. Clicking up/down jumps to the previous/next section's top edge using the same eased scroll as the Nav links. The current section is tracked from scroll position; the up arrow disables at the first section (Shree Ganesh), the down arrow disables at the last (FAQ & Footer). A short animation lock (~750ms, matching the scroll duration) ignores further clicks mid-scroll.
+The bottom-right floating control cluster (`FloatingControls.jsx`), top to bottom: an **Envelope button** (`HomeButton.jsx`) with an envelope icon — reopens the interactive 3D Envelope invitation intro; a pair of stacked up/down arrow buttons (`src/components/SectionNav.jsx`); then the music mute button. Clicking up/down jumps to the previous/next section's top edge using the same eased scroll as the Nav links. The current section is tracked from scroll position; the up arrow disables at the first section (Shree Ganesh), the down arrow disables at the last (FAQ & Footer). Keyboard ArrowUp and ArrowDown keys are also bound to jump between sections. A short animation lock (~750ms, matching the scroll duration) ignores further clicks mid-scroll.
 
 ---
 
@@ -185,17 +186,17 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
 
 ### Event Details
 - White/surface section (visually distinct from the ivory sections around it)
-- Events shown as interactive **3D Flip Cards** arranged in a centered 2-column, 3-row grid (`.events-grid`, total 6 event cards):
-  - Row 1: **Haldi** (Dec 5, 12:30 PM) &amp; **Engagement &amp; Sangeet** (Dec 5, 5:00 PM)
-  - Row 2: **Godh Bharai &amp; Sagai** (Dec 5, 7:00 PM) &amp; **Baraat &amp; Ghurchari** (Dec 6, 10:30 AM)
-  - Row 3: **Jaimaal** (Dec 6, 1:00 PM) &amp; **Phere** (Dec 6, 5:00 PM)
-- **Card Front**: Centered event title (`Playfair Display`, Burgundy `#8f3350`), subtle gold divider line, event date (uppercase, muted), and event time (`Playfair Display`, Gold `#b08968`), with a "Tap for details" hint icon.
+- Events shown as interactive **3D Flip Cards** arranged in a centered 2-column grid (`.events-grid`, total 5 event cards):
+  - Row 1: **Haldi** (Sat, Dec 5, 12:30 PM, meal: *Followed by Lunch*) &amp; **Engagement &amp; Sangeet** (Sat, Dec 5, 5:00 PM)
+  - Row 2: **Godh Bharai &amp; Sagai** (Sat, Dec 5, 7:00 PM, meal: *Followed by Dinner*) &amp; **Jaimaal** (Sun, Dec 6, 1:00 PM, meal: *Followed by Gala Lunch*)
+  - Row 3: **Phere** (Sun, Dec 6, 5:00 PM, meal: *Followed by Dinner*) — 5th card centered across the grid.
+- **Card Front**: Centered event title (`Playfair Display`, Burgundy `#8f3350`), meal subtitle slot (reserved fixed-height slot `1.2em` ensuring identical vertical rhythm across cards with and without meals), subtle gold divider line, event day & date (`Sat, December 5, 2026` / `Sun, December 6, 2026`, uppercase, muted), and event time (`Playfair Display`, Gold `#b08968`), with a "Tap for details" hint icon.
 - **Card Back**: Tapping/clicking smoothly flips the card 180° (`rotateY(180deg)`) to reveal:
-  - Header with **Short Date** (`Dec 5` or `Dec 6`) on the first line, and start time on the next line (e.g. `12:30 PM`, with the word "onwards" removed for clarity and precision).
+  - Header with event name, subtitle slot, **Short Date with Day** (`Sat, Dec 5` or `Sun, Dec 6`) on the first line, and start time on the next line (with the word "onwards" removed for clarity and precision).
   - One-liner event description.
-  - Metadata row for **Attire** (e.g. *Shades of Pink*, *Glam and Glitter*, *Traditional Festive and Elegance*).
+  - Metadata row for **Attire** with label `ATTIRE` in muted gold (`var(--color-accent)`) and attire theme in bold burgundy (`var(--color-burgundy)` / `#8f3350`, no underlines).
   - Animated burgundy boundary timer stroke (`.event-flip-card__border-timer`, `#8f3350`) tracing around the perimeter of the card showing the countdown until it flips back (default 20 seconds, or immediately on tap).
-- **Mobile (≤680px)**: Retains the 2-column, 3-row layout with compact sizing, typography, and margins so all 6 cards fit cleanly on mobile screens without overflowing.
+- **Mobile (≤680px)**: Retains the 2-column layout with the 5th card centered, compact sizing, typography, and margins so cards fit cleanly on mobile screens without overflowing.
 - **"How to reach the venue?" Button**: Sits centered below the event cards (`.event-details__venue-btn`, burgundy pill with map-pin icon).
 - **Venue & Travel Popup Modal (`VenueModal.jsx`)**:
   - Opens on clicking "How to reach the venue?".
@@ -245,6 +246,15 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
 - **Instant Telegram Bot Integration**: Triggers real-time alerts to the wedding admin Telegram group with a native inline `🗑️ Delete from Live Wall` button.
 - On successful RSVP: Confirmation message plus a **"Share via WhatsApp"** button pre-filled with the guest's RSVP details.
 - **Confetti Burst**: Fires a celebratory burst of confetti on successful submission.
+
+### Best Compliments
+- Positioned between Blessings & RSVP (`#blessings-rsvp`) and FAQ (`#faq`), accessible via `#compliments`.
+- **Top-Anchored Heading**: Section heading with tagline (`.eyebrow`, `With Love & Blessings`) and section title (`h2`, `With Best Compliments From`) inheriting the site-wide standard typographic scale.
+- **Vertically Centered Royal Luxury Card**: A warm ivory surface card (`.compliments-card`) with a `1.2px` gold perimeter border, inset dashed burgundy inner border, and soft elevation, vertically centered within the section space.
+- **Single-Column Compliments List**: Displays names in a clean, centered single-column layout without bullets, each couple/member on their own line (with Muskan, Paras, and Arpita each on individual lines).
+- **1st-Page Sacred Divider**: Features a 1px gold gradient line with a centered 5px circular gold pearl/dot (`linear-gradient(to right, transparent, var(--color-accent) 50%, transparent)`), identical to the sacred invocation divider in Shree Ganesh.
+- **Awaiting Eyes Row**: Sub-heading `AWAITING EYES` in uppercase gold serif, followed by the children's names (*Amulya*, *Amogh*, *Shriyan*) in a generous space-separated single horizontal row.
+- **Line Separator to FAQ**: A full-width `1px solid var(--color-border)` dividing line cleanly separates Best Compliments from FAQ.
 
 ### FAQ
 - Ivory section, content narrowed to 40rem and centered (narrower than the 1000px page max-width, since Q&A reads better in a tighter column)

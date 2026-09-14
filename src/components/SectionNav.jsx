@@ -15,6 +15,7 @@ const SECTION_IDS = [
   "gallery",
   "blessings",
   "blessings-rsvp",
+  "compliments",
   "faq",
 ];
 
@@ -68,6 +69,33 @@ export default function SectionNav() {
       isAnimatingRef.current = false;
     }, SCROLL_LOCK_MS);
   };
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (
+        e.target &&
+        (e.target.tagName === "INPUT" ||
+          e.target.tagName === "TEXTAREA" ||
+          e.target.tagName === "SELECT" ||
+          e.target.isContentEditable)
+      ) {
+        return;
+      }
+      if (e.key === "ArrowDown") {
+        if (currentIndex < SECTION_IDS.length - 1) {
+          e.preventDefault();
+          goTo(currentIndex + 1);
+        }
+      } else if (e.key === "ArrowUp") {
+        if (currentIndex > 0) {
+          e.preventDefault();
+          goTo(currentIndex - 1);
+        }
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [currentIndex]);
 
   const isFirst = currentIndex === 0;
   const isLast = currentIndex === SECTION_IDS.length - 1;

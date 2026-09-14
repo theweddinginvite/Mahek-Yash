@@ -11,6 +11,7 @@ const LINKS = [
   { href: "#gallery", label: "Gallery" },
   { href: "#blessings", label: "Blessings Wall" },
   { href: "#blessings-rsvp", label: "RSVP" },
+  { href: "#compliments", label: "Best Compliments" },
   { href: "#faq", label: "FAQ" },
 ];
 
