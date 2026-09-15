@@ -30,22 +30,24 @@
 /* Consistent Title and Tagline at the Top */
 .compliments-section .section__heading {
   margin-top: 0;
-  margin-bottom: clamp(0.75rem, 1.8vh, 1.25rem);
+  margin-bottom: clamp(0.9rem, 1.8vh, 1.35rem);
   text-align: center;
 }
 
 .compliments-section .section__heading h2 {
+  font-size: clamp(29.6px, 3.5vh, 38.4px);
   margin-bottom: 0;
 }
 
-/* Centered Box Wrapper */
+/* Upper-Shifted Box Wrapper (with generous breathing room below title) */
 .compliments-card-wrap {
   flex: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   width: 100%;
-  margin: auto 0;
+  margin-top: clamp(3.8rem, 8vh, 5.5rem);
+  margin-bottom: auto;
 }
 
 /* Royal Luxury Card Container */
@@ -181,6 +183,14 @@
 
 /* Mobile responsive */
 @media (max-width: 580px) {
+  .compliments-section .section__heading {
+    margin-bottom: clamp(0.7rem, 1.4vh, 1rem);
+  }
+
+  .compliments-card-wrap {
+    margin-top: clamp(2.8rem, 6vh, 4.2rem);
+  }
+
   .compliments-card {
     padding: 1.35rem 1.15rem;
     border-radius: 1rem;
