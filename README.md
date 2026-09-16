@@ -25,9 +25,11 @@ A high-performance, single-page luxury Indian wedding invitation built with Reac
   - **Matching Royal Frame**: Harmonized luxury border design with burgundy inner dashed trim.
   - **Telegram Bot Notifications & Moderation**: Instant Telegram alerts for new blessings & RSVPs with native inline "🗑️ Delete from Live Wall" moderation buttons.
 - **With Best Compliments (`#compliments`)**: Dedicated whole-view section honouring near and dear ones and extended family relations, featuring upper-balanced ivory luxury card framing with gold border and burgundy dashed trim.
+- **Live Wedding Notice Board**: Real-time announcement feed popup accessible from the floating controls, designed with luxury parchment cards, 45s auto-close progress bar, and instant synchronization with Firebase Firestore and Google Sheets.
+- **Telegram Host Announcements**: Hosts can broadcast live updates, ceremony timings, or venue changes directly from the Telegram bot/admin group using `/notice <message>`, `/announce <message>`, or `/alert <message>` (urgent notice). The bot replies with a native inline "🗑️ Remove from Notice Board" button for 1-tap live deletion.
 - **FAQ & Footer (`#faq`)**: Curated 6-question accordion covering exact travel routes & distances, complimentary parking, dress codes, December weather breakdown, 12:00 PM check-in & 10:00 AM check-out with mandatory Aadhaar ID requirements, hospitality coordinators, 24/7 snacks availability, official wedding hashtags (`#MahekWedsYash` & `#YashKiMahek`), and interactive action buttons for venue navigation and gallery jumps.
 - **Mobile Viewport Stability & Smooth Free Scrolling**: Standardized on `min-height: 100vh; min-height: 100lvh;` with global `overflow-anchor: none !important;` and `scroll-snap-type: none !important;`, preventing mobile URL bar expansion/retraction from triggering scroll jumps, erratic repositioning, or rubber-banding across iOS Safari and Android Chrome.
-- **Floating Controls**: Ambient background music player, envelope re-opener, and Event Details & Itinerary popup button pinned with responsive right safe-area offset.
+- **Floating Controls**: Ambient background music player, envelope re-opener, Live Notice Board button (with pulsing badge indicator), and Event Details & Itinerary popup button pinned with responsive right safe-area offset.
 
 ---
 
@@ -134,13 +136,14 @@ src/
     EventDetails.jsx        ← 2-column 3D flip cards (5 events) with calibrated heights & venue button
     VenueModal.jsx          ← Venue travel directions popup with QR code & transit options
     SaveEventsModal.jsx     ← Save Event Details modal with 2x2 grid, auto-close timer & PDF/WhatsApp tools
+    NoticeBoardModal.jsx    ← Live Wedding Notice Board modal for real-time announcements
     Gallery.jsx             ← 3D coverflow carousel with adaptive matting & caricature fallback
     GalleryUploadModal.jsx  ← Guest photo/video upload modal with batch progress & ceremony picker
     Blessings.jsx           ← Curated blessings wall cards with live heart reactions (❤️)
     BlessingsRSVP.jsx       ← Tabbed blessings submission & RSVP form
     Compliments.jsx         ← With Best Compliments section honouring family members & relations
     FAQ.jsx                 ← Interactive accordion with route, dress code & stay guides
-    FloatingControls.jsx    ← Music player, envelope re-opener & Event Details itinerary trigger
+    FloatingControls.jsx    ← Music player, envelope re-opener, notice board & Event Details triggers
   utils/
     generateEventPdf.js     ← Client-side luxury PDF generator with jewel dot ornaments & WhatsApp formatter
 public/
