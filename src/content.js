@@ -142,7 +142,7 @@ const content = {
       date: "December 6, 2026",
       time: "1:00 PM",
       description: "The auspicious floral garland exchange marking the union of bride and groom.",
-      attire: "Traditional Festive and Elegance",
+      attire: "Tradition & Grace",
       location: "Central Mandap",
       note: "Shower the couple with flower petals.",
     },
@@ -153,7 +153,7 @@ const content = {
       date: "December 6, 2026",
       time: "5:00 PM",
       description: "The seven sacred vows around the holy agni solemnizing our sacred marriage bond.",
-      attire: "Traditional Festive and Elegance",
+      attire: "Tradition & Grace",
       location: "Mandap by the Forest",
       note: "Dinner & reception to follow.",
     },
@@ -239,7 +239,7 @@ const content = {
         "We encourage you to dress in accordance with the ceremony themes:\n" +
         "• Haldi (Dec 5, 12:30 PM): Shades of Pink\n" +
         "• Engagement & Sangeet (Dec 5, 5:00 PM): Glam and Glitter\n" +
-        "• Wedding Day (Dec 6): Traditional Festive and Elegance",
+        "• Wedding Day (Dec 6): Tradition & Grace",
     },
     {
       question: "What will the weather be like in Jim Corbett in December?",

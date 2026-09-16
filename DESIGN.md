@@ -82,7 +82,7 @@ A single scale used everywhere via CSS variables — no ad-hoc pixel values:
 1. **Shree Ganesh** (`#shree-ganesh`) — full-height sacred invocation screen with Lord Ganesh crest & shlokas
 2. **Invitation** (`#invitation`) — standalone wedding invitation, lineage, and scratch card date reveal
 3. **Meet the Couple** (`#couple`)
-4. **Event Details** (`#details`) — 5 interactive flip cards grid + "How to reach the venue?" popup
+4. **Event Details** (`#details`) — 5 interactive flip cards grid + dual action buttons ("Save Event Details" & "How to reach the venue?") with modal dialogs
 5. **Gallery** (`#gallery`) — 3D coverflow carousel
 6. **Blessings** (`#blessings`) — guest blessings display
 7. **Blessings and RSVP** (`#blessings-rsvp`) — interactive RSVP & blessing form
@@ -195,10 +195,29 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
   - Row 1: **Haldi** (Sat, Dec 5, 12:30 PM) &amp; **Engagement &amp; Sangeet** (Sat, Dec 5, 5:00 PM)
   - Row 2: **Godh Bharai &amp; Sagai** (Sat, Dec 5, 7:00 PM) &amp; **Jaimaal** (Sun, Dec 6, 1:00 PM)
   - Row 3: **Phere** (Sun, Dec 6, 5:00 PM) — centered across the grid (or paired in Yash-Mahek).
-- **Single-Screen Mobile Grid Fit**: On mobile (`≤680px`), the events grid uses `grid-template-rows: repeat(3, minmax(0, 1fr))` with cards dynamically occupying 100% of available height (`min-height: 0; height: 100%`). This guarantees all cards and the bottom "How to reach the venue?" button appear together in a single viewport without overflowing.
-- **Card Front**: Centered event title (`Playfair Display`, Burgundy `#8f3350`, `clamp(1.08rem, 2.9vw, 1.25rem)` mobile / `clamp(1.15rem, 2.2vw, 1.32rem)` desktop), subtle gold divider line, event day (`0.78rem`/`0.82rem`, uppercase, muted), date (`0.78rem`/`0.82rem`, uppercase, muted), and event time (`Playfair Display`, Gold `#b08968`, `1.12rem`/`1.18rem`), with a "Tap for details" icon. Food/meal details are cleanly excluded from the front face to keep it uncluttered.
-- **Card Back**: Flips 180° to reveal event name, date, time, description, meal line (*Dinner to follow* / *Lunch to follow*), and Attire theme. Back face includes scroll protection if text length varies.
-- **"How to reach the venue?" Button**: Sits centered below the event cards (`.event-details__venue-btn`, burgundy pill with map-pin icon).
+- **Single-Screen Mobile Grid Fit**: On mobile (`≤680px`), the events grid uses `grid-template-rows: repeat(3, minmax(0, 1fr))` with cards dynamically occupying 100% of available height (`min-height: 0; height: 100%`). This guarantees all cards and the action buttons appear together in a single viewport without overflowing.
+- **Card Front**: Centered event title (`Playfair Display`, Burgundy `#8f3350`), signature gold gradient divider line with center jewel dot, event day (`SATURDAY` / `SUNDAY`), date, and event time (`Playfair Display`, Gold `#b08968`), with a "Tap for details" hint icon. Food/meal details are cleanly excluded from the front face to keep it uncluttered.
+- **Card Back**: Flips 180° to reveal event name, date, time, description, meal line (*Dinner to follow* / *Lunch to follow*), and Attire theme (*Tradition & Grace*). Signature gold gradient divider with center jewel dot matches the front face. Back face includes scroll protection if text length varies.
+- **Action Buttons Row & 10% Viewport Clearance**:
+  - Positioned beneath the cards with a guaranteed **10% bottom viewport spacing** (`max(10vh, 10lvh)`).
+  - Left Button: **"Save Event Details"** (`.event-details__action-btn--primary`, burgundy pill button with calendar icon).
+  - Right Button: **"How to reach the venue?"** (`.event-details__action-btn--secondary`, ivory pill button with burgundy border & map-pin icon).
+- **"Save Event Details" Popup Modal (`SaveEventsModal.jsx`)**:
+  - Opens on clicking "Save Event Details". Includes backdrop dismiss, `Escape` key support, body scroll lock, and close button.
+  - **2x2 Grid Layout**:
+    ```
+    Event details:    [Description]
+                      [Meal without highlight]
+    Attire details:   [Theme / Dress Code]
+    ```
+  - Displays event name and timings cleanly separated without leader dots.
+  - **Three Modal Action Buttons**:
+    1. **Share as text**: Opens WhatsApp with formatted pretext (`*The wedding of Mahek & Yash*\nDecember 5-6, 2026\n\nEvents details:`) followed by bulleted event list, meal, and venue map link.
+    2. **Share as pdf**: Invokes native Web Share API (`navigator.share({ files: [file] })`) on supported mobile devices to share PDF directly to WhatsApp/AirDrop; falls back to download on desktop.
+    3. **Download pdf**: Directly downloads the themed vector PDF (`The_Wedding_Events_Mahek_Yash.pdf`).
+- **Themed Vector PDF Generator (`generateEventPdf.js`)**:
+  - Generated client-side using `jspdf`.
+  - Styled with soft ivory background (`#faf7f2`), double warm gold border (`#b08968`) with corner diamonds, burgundy headings (`#8f3350`), dotted line event separators, and generous line spacing.
 - **Venue & Travel Popup Modal (`VenueModal.jsx`)**:
   - Opens on clicking "How to reach the venue?".
   - **Auto-Close**: Closes automatically after **30 seconds** (visualized via a subtle top progress timer bar), or immediately when tapping the top-right `✕` close button, clicking the backdrop overlay, or pressing `Escape`.
