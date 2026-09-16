@@ -38,9 +38,9 @@ Design intent: warm, neutral, editorial — luxury royal Indian wedding aestheti
 Loaded via Google Fonts `<link>` in `index.html` (no npm font package).
 
 ### Global Responsive Typography Scale
-- **Root `html` Font Size**: `17px` on desktop, `18px` on mobile (`≤680px`) with body font size `1.18rem` (`line-height: 1.6`) for enhanced legibility across smaller handheld viewports.
+- **Root `html` Font Size**: Universal `16px` across desktop and mobile, with body font size `1.15rem` (`line-height: 1.55`) for balanced vertical rhythm and viewport stability.
 - **Section Titles (`h2`)**: Anchored to `clamp(29.6px, 3.5vh, 38.4px)` to preserve their classic refined visual scale across all devices.
-- **Section Taglines (`.eyebrow`)**: Scaled at `0.82rem` (`14.76px` on mobile) with `0.28em` tracking in muted gold (`--color-accent`).
+- **Section Taglines (`.eyebrow`)**: Scaled at `0.82rem` (`13.12px` on mobile) with `0.28em` tracking in muted gold (`--color-accent`).
 
 ### Invitation Typography Scale
 - **Tagline**: `0.95 rem` (`Playfair Display`, uppercase, tracked)
@@ -124,13 +124,13 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
 
 ### Shree Ganesh (`#shree-ganesh`, `ShreeGanesh.jsx`)
 - **Sacred Invocation Screen**: Pure spiritual focus on Lord Ganesha and Lord Vishnu blessings.
-- **Ganesh Crest**: Centered image (`230px`, `public/images/lordganesh/ganeshWithoutBackground.png`).
+- **Ganesh Crest**: Centered emblem (`clamp(120px, 17.5vh, 155px)` mobile / `230px` desktop, `public/images/lordganesh/ganeshWithoutBackground.png`) with top margin (`0.5rem auto clamp(0.25rem, 1vh, 0.6rem)`) providing generous breathing room above.
 - **Glow Aura**: `🌸 Golden Rose` halo (`.shree-ganesh__ganesh-glow`, `inset: -20%`, radial gradient with `rgba(230, 155, 165, 0.75)` core and `rgba(216, 150, 76, 0.5)` mid, `filter: blur(5px)`), pulsing softly with a tranquil `5.5s` breathing rhythm (`opacity: 0.75`, `scale: 1.0`).
 - **Devanagari Shlokas**:
-  1. Ganesha shloka (*Vakratunda Mahakaya...*) with English translation.
+  1. Ganesha shloka (*Vakratunda Mahakaya...*) with English translation (`clamp(0.7rem, 1.25vh, 0.8rem)` on mobile).
   2. Ornamental gold diamond divider line (`.shree-ganesh__shlok-divider`).
-  3. Vishnu Mangalam verse (*Mangalam Bhagwan Vishnuh...* without trailing commas for clean Sanskrit metre) with English translation.
-- **Bouncing Gold Scroll-Down Button**: Centered circular button at the bottom that smoothly scrolls directly to the Invitation screen (`#invitation`). The inner view has tailored padding (`padding-bottom: clamp(1.2rem, 3.5vh, 2.25rem)`) and slightly elevated content layout to ensure the button has ample bottom clearance and remains fully visible on all mobile viewports without clipping.
+  3. Vishnu Mangalam verse (*Mangalam Bhagwan Vishnuh...* without trailing commas for clean Sanskrit metre) with English translation (`clamp(0.7rem, 1.25vh, 0.8rem)` on mobile).
+- **Bouncing Gold Scroll-Down Button**: Centered circular button at the bottom that smoothly scrolls directly to the Invitation screen (`#invitation`). Verified visible with comfortable margin on all mobile viewports without clipping.
 
 ### Invitation (`#invitation`)
 - **Dedicated 2nd View**: Extracted as a standalone component (`Invitation.jsx`) top-aligned with no dead space.
@@ -155,14 +155,14 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
   - **Scratch Physics**: Scratching clears both the paper texture and monogram logo with organic debris particle flakes falling away.
 - **Revealed Card View**:
   - Framed with an elegant **burgundy border** (`1.5px solid var(--color-burgundy)`), `0.75rem` rounded corners, glassmorphic ivory background (`rgba(255, 255, 255, 0.95)`), and soft burgundy elevation shadow.
-  - **Wedding Date**: `1.85rem` `Playfair Display` serif (`December 6, 2026`).
-  - **Live Countdown**: Days, Hours, Minutes, Seconds in single row (numbers `1.35rem`, unit labels `0.70rem`).
+  - **Wedding Date**: Strictly formatted on a single line via `white-space: nowrap` and scaled `clamp(1.18rem, 3.4vw, 1.45rem)` mobile / `1.85rem` desktop (`DECEMBER 6, 2026`).
+  - **Live Countdown**: Days, Hours, Minutes, Seconds in a single row with balanced unit label spacing so labels remain legible without colliding.
   - Automatically triggers celebratory **Confetti Burst** on reveal.
 
 ### Meet the Couple / Family Section (`#couple`, `MeetFamilies.jsx` / `MeetCouple.jsx`)
 - **Sacred Family Shloka & Quote Header**:
-  - Sanskrit Shloka (`॥ ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं । भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात् ॥`) rendered in `var(--color-burgundy)` in `Tiro Devanagari Sanskrit`.
-  - Editorial translation quote below in `Cormorant Garamond` italic (*"We meditate on the transcendent glory of the Divine Sun, creator of all realms — may that divine brilliance inspire and illuminate our path."*).
+  - Sanskrit Shloka (`॥ ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं । भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात् ॥`) rendered in `var(--color-burgundy)` in `Tiro Devanagari Sanskrit` (`clamp(0.92rem, 1.8vh, 1.08rem)` mobile / `clamp(0.98rem, 1.9vh, 1.18rem)` desktop).
+  - Editorial translation quote below in `Cormorant Garamond` italic (`0.8rem` mobile / `clamp(0.78rem, 1.35vh, 0.88rem)` desktop).
 - **Two Side-by-Side Royal Indian Family Cards**:
   - Left: Bride's Family Card (The Gupta Family in royal burgundy `var(--color-burgundy)`, location `Moradabad · The City of Brass`, invite phrases, parents in burgundy bold, bride name in Alex Brush cursive, relation tagline in muted text).
   - Right: Groom's Family Card (The Gupta Family in royal burgundy `var(--color-burgundy)`, location `Moradabad · The City of Brass`, invite phrases, parents in burgundy bold, groom name in Alex Brush cursive, relation tagline in muted text).
@@ -191,18 +191,13 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
 
 ### Event Details
 - White/surface section (visually distinct from the ivory sections around it)
-- Events shown as interactive **3D Flip Cards** arranged in a centered 2-column grid (`.events-grid`, total 5 event cards):
+- Events shown as interactive **3D Flip Cards** arranged in a centered 2-column grid (`.events-grid`, 5 event cards in Mahek-Yash, 6 in Yash-Mahek):
   - Row 1: **Haldi** (Sat, Dec 5, 12:30 PM) &amp; **Engagement &amp; Sangeet** (Sat, Dec 5, 5:00 PM)
   - Row 2: **Godh Bharai &amp; Sagai** (Sat, Dec 5, 7:00 PM) &amp; **Jaimaal** (Sun, Dec 6, 1:00 PM)
-  - Row 3: **Phere** (Sun, Dec 6, 5:00 PM) — 5th card centered across the grid.
-- **Card Front**: Centered event title (`Playfair Display`, Burgundy `#8f3350`, `clamp(1.08rem, 2.9vw, 1.25rem)` mobile / `clamp(1.15rem, 2.2vw, 1.32rem)` desktop), subtle gold divider line, event day (`0.78rem`/`0.82rem`, uppercase, muted), date (`0.78rem`/`0.82rem`, uppercase, muted), and event time (`Playfair Display`, Gold `#b08968`, `1.12rem`/`1.18rem`), with a "Tap for details" hint icon (`0.7rem`). Food/meal details are cleanly excluded from the front face to keep it uncluttered.
-- **Card Back**: Tapping/clicking smoothly flips the card 180° (`rotateY(180deg)`) to reveal:
-  - Header with event name (`1.15rem`/`1.18rem`), **Short Date with Day** (`Sat, Dec 5` or `Sun, Dec 6`, `0.84rem`/`0.88rem`), and start time (`0.98rem`/`1.02rem`, with "onwards" removed).
-  - One-liner event description (`0.94rem`/`0.98rem`, italic).
-  - **Meal Line**: Displays food/dining details right before the attire line (*Dinner to follow* / *Lunch to follow* / *Gala Lunch to follow* in `0.94rem`/`0.95rem` italic bold gold `var(--color-accent)`).
-  - Metadata row for **Attire** with label `ATTIRE` in muted gold (`var(--color-accent)`) and attire theme in bold burgundy (`var(--color-burgundy)` / `#8f3350`, `0.94rem`/`0.98rem`, no underlines).
-  - Animated burgundy boundary timer stroke (`.event-flip-card__border-timer`, `#8f3350`) tracing around the perimeter of the card showing the countdown until it flips back (default 20 seconds, or immediately on tap).
-- **Mobile (≤680px) & Desktop Layout**: Cards occupy the view with calibrated heights (`min-height: 160px; height: 100%` mobile, `154px` desktop) and streamlined vertical padding (`padding-bottom: max(0.85rem, env(safe-area-inset-bottom))`), ensuring all 3 rows of cards and the bottom **"How to reach the venue?"** button fit comfortably in a single screen view.
+  - Row 3: **Phere** (Sun, Dec 6, 5:00 PM) — centered across the grid (or paired in Yash-Mahek).
+- **Single-Screen Mobile Grid Fit**: On mobile (`≤680px`), the events grid uses `grid-template-rows: repeat(3, minmax(0, 1fr))` with cards dynamically occupying 100% of available height (`min-height: 0; height: 100%`). This guarantees all cards and the bottom "How to reach the venue?" button appear together in a single viewport without overflowing.
+- **Card Front**: Centered event title (`Playfair Display`, Burgundy `#8f3350`, `clamp(1.08rem, 2.9vw, 1.25rem)` mobile / `clamp(1.15rem, 2.2vw, 1.32rem)` desktop), subtle gold divider line, event day (`0.78rem`/`0.82rem`, uppercase, muted), date (`0.78rem`/`0.82rem`, uppercase, muted), and event time (`Playfair Display`, Gold `#b08968`, `1.12rem`/`1.18rem`), with a "Tap for details" icon. Food/meal details are cleanly excluded from the front face to keep it uncluttered.
+- **Card Back**: Flips 180° to reveal event name, date, time, description, meal line (*Dinner to follow* / *Lunch to follow*), and Attire theme. Back face includes scroll protection if text length varies.
 - **"How to reach the venue?" Button**: Sits centered below the event cards (`.event-details__venue-btn`, burgundy pill with map-pin icon).
 - **Venue & Travel Popup Modal (`VenueModal.jsx`)**:
   - Opens on clicking "How to reach the venue?".
