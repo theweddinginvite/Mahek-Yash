@@ -62,6 +62,9 @@ export default function Compliments() {
           </div>
         </div>
       </div>
+
+      {/* Full-Width Section Division Line Across Page */}
+      <div className="section-divider" aria-hidden="true" />
     </section>
   );
 }
