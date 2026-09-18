@@ -9,7 +9,7 @@ const LINKS = [
   { href: "#couple", label: "Meet Families" },
   { href: "#details", label: "Events" },
   { href: "#gallery", label: "Gallery" },
-  { href: "#blessings", label: "Blessings Wall" },
+  { href: "#blessings", label: "Wall of Blessings" },
   { href: "#blessings-rsvp", label: "RSVP" },
   { href: "#compliments", label: "Best Compliments" },
   { href: "#faq", label: "FAQ" },

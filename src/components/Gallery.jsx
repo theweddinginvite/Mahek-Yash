@@ -13,7 +13,7 @@ const CARICATURE_PLACEHOLDERS = [
     isCaricature: true,
     caricatureSrc: asset("/images/monogram/monogramWithoutBg.png"),
     title: "Mahek & Yashoratna",
-    subtitle: "A Lifetime of Love and Happiness",
+    subtitle: "The Lifetime of Love and Happiness",
     badge: "Forever Together 🌸",
     alt: "Mahek & Yashoratna Monogram Logo",
   },
