@@ -93,7 +93,7 @@ Each section is a full-screen "frame" you can jump to directly — every section
 
 ### Floating Controls Cluster (Envelope, Notice Board, Event Details & Music Player)
 
-The bottom-right floating control cluster (`FloatingControls.jsx`), top to bottom: an **Envelope button** (`HomeButton.jsx`) with an envelope icon — reopens the interactive 3D Envelope invitation intro; a **Live Notice Board button** (`MegaphoneIcon`) with a pulsing badge indicator — opens the live announcement feed with instant updates from hosts; an **Event Details & Itinerary button** (`CalendarIcon`) — opens the Save Event Details popup with 2x2 grid itinerary, PDF downloads, and WhatsApp sharing; then the music mute/unmute button (`MusicPlayer.jsx`). All buttons share the unified `.icon-button` circular ivory/gold styling with responsive safe-area offset.
+The bottom-right floating control cluster (`FloatingControls.jsx`), top to bottom: an **Envelope button** (`HomeButton.jsx`) with an envelope icon — reopens the interactive 3D Envelope invitation intro (also resets the entire page to a fresh state: clears sessionStorage, scrolls to top, and resets the scratch card); a **Live Notice Board button** (`MegaphoneIcon`) with a pulsing badge indicator — opens the live announcement feed with instant updates from hosts; an **Event Details & Itinerary button** (`CalendarIcon`) — opens the Save Event Details popup with 2x2 grid itinerary, PDF downloads, and WhatsApp sharing; then the music mute/unmute button (`MusicPlayer.jsx`). All buttons share the unified `.icon-button` circular ivory/gold styling: **44×44px on desktop**, **42×42px on mobile** (≤680px), with SVG icons 22px desktop / 20px mobile, and responsive safe-area offset.
 
 ---
 
@@ -117,7 +117,7 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
     3. **The Couple** (`#couple`)
     4. **Events** (`#details`)
     5. **Gallery** (`#gallery`)
-    6. **Blessings** (`#blessings`)
+    6. **Wall of Blessings** (`#blessings`)
     7. **RSVP** (`#blessings-rsvp`)
     8. **FAQ** (`#faq`)
   - Clicking any link smoothly scrolls to the target with zero offset and auto-closes the drawer.
@@ -127,9 +127,9 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
 - **Top Clearance & Ganesh Crest**: After comfortable top spacing, Lord Ganesha's sacred emblem (`clamp(185px, 24vh, 230px)` on mobile, `230px` on desktop, `public/images/lordganesh/ganeshWithoutBackground.png`) is prominently displayed.
 - **Glow Aura**: `🌸 Golden Rose` halo (`.shree-ganesh__ganesh-glow`, `inset: -20%`, radial gradient with `rgba(230, 155, 165, 0.75)` core and `rgba(216, 150, 76, 0.5)` mid, `filter: blur(5px)`), pulsing softly with a tranquil `5.5s` breathing rhythm (`opacity: 0.75`, `scale: 1.0`).
 - **Devanagari Shlokas & Readable Typography**:
-  1. Ganesha shloka (*Vakratunda Mahakaya...*) in `Tiro Devanagari Sanskrit` (`clamp(1.2rem, 2.35vh, 1.35rem)`) with readable English translation (`clamp(0.92rem, 1.6vh, 1.02rem)`).
+  1. Ganesha shloka (*Vakratunda Mahakaya...*) in `Tiro Devanagari Sanskrit` (`clamp(1.2rem, 2.35vh, 1.35rem)`) with readable English translation (`clamp(0.92rem, 1.6vh, 1.02rem)`) styled in **royal burgundy (`var(--color-burgundy)`) on all screen sizes**.
   2. Ornamental gold diamond divider line (`.shree-ganesh__shlok-divider`).
-  3. Vishnu Mangalam verse (*Mangalam Bhagwan Vishnuh...* without trailing commas for clean Sanskrit metre) in `Tiro Devanagari Sanskrit` with readable English translation.
+  3. Vishnu Mangalam verse (*Mangalam Bhagwan Vishnuh...* without trailing commas for clean Sanskrit metre) in `Tiro Devanagari Sanskrit` with readable English translation, also in **royal burgundy (`var(--color-burgundy)`)** on all screen sizes.
 - **Bouncing Gold Scroll-Down Button**: Centered circular button (`clamp(2.55rem, 5.2vh, 2.85rem)`) that smoothly scrolls directly to the Invitation screen (`#invitation`). Verified visible with balanced bottom clearance on all mobile viewports.
 
 ### Invitation (`#invitation`)
@@ -162,7 +162,8 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
 ### Meet the Couple / Family Section (`#couple`, `MeetFamilies.jsx` / `MeetCouple.jsx`)
 - **Sacred Family Shloka & Quote Header**:
   - Sanskrit Shloka (`॥ ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं । भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात् ॥`) rendered in `var(--color-burgundy)` in `Tiro Devanagari Sanskrit` (`clamp(0.92rem, 1.8vh, 1.08rem)` mobile / `clamp(0.98rem, 1.9vh, 1.18rem)` desktop).
-  - Editorial translation quote below in `Cormorant Garamond` italic (`0.8rem` mobile / `clamp(0.78rem, 1.35vh, 0.88rem)` desktop).
+  - Editorial translation quote below in `Cormorant Garamond` italic (`0.8rem` mobile / `clamp(0.78rem, 1.35vh, 0.88rem)` desktop), styled in **`var(--color-text)` (warm near-black)** — not muted gray.
+  - Heading-to-content spacing uses `var(--space-heading-to-content, clamp(2rem, 4.2vh, 3rem))`, consistent with EventDetails and Gallery sections.
 - **Two Side-by-Side Royal Indian Family Cards**:
   - Left: Bride's Family Card (The Gupta Family in royal burgundy `var(--color-burgundy)`, location `Moradabad · The City of Brass`, invite phrases, parents in burgundy bold, bride name in Alex Brush cursive, relation tagline in muted text).
   - Right: Groom's Family Card (The Gupta Family in royal burgundy `var(--color-burgundy)`, location `Moradabad · The City of Brass`, invite phrases, parents in burgundy bold, groom name in Alex Brush cursive, relation tagline in muted text).
@@ -197,7 +198,7 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
   - Row 3: **Phere** (Sun, Dec 6, 5:00 PM) — centered across the grid (or paired in Yash-Mahek).
 - **Single-Screen Mobile Grid Fit**: On mobile (`≤680px`), the events grid uses `grid-template-rows: repeat(3, minmax(0, 1fr))` with cards dynamically occupying 100% of available height (`min-height: 0; height: 100%`). This guarantees all cards and the action buttons appear together in a single viewport without overflowing.
 - **Card Front**: Centered event title (`Playfair Display`, Burgundy `#8f3350`), signature gold gradient divider line with center jewel dot, event day (`SATURDAY` / `SUNDAY`), date, and event time (`Playfair Display`, Gold `#b08968`), with a "Tap for details" hint icon. Food/meal details are cleanly excluded from the front face to keep it uncluttered.
-- **Card Back**: Flips 180° to reveal event name, date, time, description, meal line (*Dinner to follow* / *Lunch to follow*), and Attire theme (*Tradition & Grace*). Signature gold gradient divider with center jewel dot matches the front face. Back face includes scroll protection if text length varies.
+- **Card Back**: Flips 180° to reveal event name, date, time, description, meal line (*Dinner to follow* / *Lunch to follow*), and Attire theme — **Shades of Pink** (Haldi), **Glam and Glitter** (Engagement & Sangeet, Godh Bharai & Sagai), **Ethnic Wear** (all Dec 6 events: Jaimaal, Phere). Signature gold gradient divider with center jewel dot matches the front face. Back face includes scroll protection if text length varies.
 - **Action Buttons Row & 10% Viewport Clearance**:
   - Positioned beneath the cards with a guaranteed **10% bottom viewport spacing** (`max(10vh, 10lvh)`).
   - Left Button: **"Save Event Details"** (`.event-details__action-btn--primary`, burgundy pill button with calendar icon).
@@ -212,7 +213,7 @@ The bottom-right floating control cluster (`FloatingControls.jsx`), top to botto
     ```
   - Displays event name and timings cleanly separated without leader dots.
   - **Three Modal Action Buttons**:
-    1. **Share as text**: Opens WhatsApp with formatted pretext (`*The wedding of Mahek & Yash*\nDecember 5-6, 2026\n\nEvents details:`) followed by bulleted event list, meal, and venue map link.
+    1. **Share as text (WhatsApp)**: Uses Web Share API — on mobile, triggers native share sheet with the **M&Y monogram card image** (`/images/monogram/monogram-share-card.jpg`) + full formatted text (no URL length truncation). Falls back to text-only Web Share, then `wa.me` URL. Message format: `*The wedding of Mahek & Yash*`, `*December 5-6, 2026*`, `✨ *Events & Itinerary*` header, each event in **bold name**, date · time, description, attire — venue in **bold labels** (`*Venue:*`, `*Helpdesk:*`, `*Google Search Resort:*`, `*Maps Direction:*`), no emoji prefixes.
     2. **Share as pdf**: Invokes native Web Share API (`navigator.share({ files: [file] })`) on supported mobile devices to share PDF directly to WhatsApp/AirDrop; falls back to download on desktop.
     3. **Download pdf**: Directly downloads the themed vector PDF (`The_Wedding_Events_Mahek_Yash.pdf`).
 - **Themed Vector PDF Generator (`generateEventPdf.js`)**:
