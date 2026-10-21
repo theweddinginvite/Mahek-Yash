@@ -117,7 +117,7 @@ function App({ entries, status, myBlessingKey, addLocalBlessing }) {
       <PageSparkles />
       <CursorSparkleTrail />
       <Nav />
-      <ShreeGanesh />
+      <ShreeGanesh isEnvelopeOpened={opened} />
       <Invitation
         key={scratchResetKey}
         isDateRevealed={dateRevealed}
